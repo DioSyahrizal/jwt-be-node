@@ -1,9 +1,11 @@
 import bodyParser from "body-parser";
 import express from "express";
 import mongoose from "mongoose";
-import passport from "passport";
+import dotenv from "dotenv";
+// import passport from "passport";
 import { config } from "./utils/db";
 
+dotenv.config();
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
   () => {
     console.dir("Database is connected");

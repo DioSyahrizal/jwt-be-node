@@ -1,3 +1,5 @@
 export const config = {
-  DB: "mongodb://localhost:27017/auth"
+  DB: `mongodb://${process.env.DB_HOST || "localhost"}:${
+    process.env.DB_PORT
+  }/auth`
 };
