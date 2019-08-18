@@ -3,7 +3,7 @@ import isEmpty from "./is-empty";
 import { IRegister } from "../interfaces/interfaces";
 
 export const validateRegisterInput = (data: IRegister) => {
-  let errors: IRegister;
+  let errors: any = {};
   data.name = !isEmpty(data.name) ? data.name : "";
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";

@@ -1,13 +1,13 @@
 import Validator from "validator";
-import { ILogin } from "interfaces/interfaces";
+import { ILogin } from "../interfaces/interfaces";
 import isEmpty from "./is-empty";
 
 export const validateLoginInput = (data: ILogin) => {
-  let errors: ILogin;
+  let errors: any = {};
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";
 
-  if (Validator.isEmail(data.email)) {
+  if (!Validator.isEmail(data.email)) {
     errors.email = "Email is invalid";
   }
 

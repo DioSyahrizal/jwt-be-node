@@ -1,9 +1,15 @@
+import "module-alias/register";
+
 import bodyParser from "body-parser";
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-// import passport from "passport";
-import { config } from "./utils/db";
+import passport from "passport";
+
+import PassportConfig from "./utils/passport";
+
+import User from "./routes/user";
+import { config } from "@utils/db";
 
 dotenv.config();
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
@@ -16,9 +22,13 @@ mongoose.connect(config.DB, { useNewUrlParser: true }).then(
 );
 
 const app = express();
+app.use(passport.initialize());
+PassportConfig(passport);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use("/api/users", User);
 
 app.get("/", (_req, res) => {
   res.send("hello");

@@ -1,15 +1,14 @@
 import { Strategy, ExtractJwt } from "passport-jwt";
 // import mongoose from "mongoose";
-import { PassportStatic } from "passport";
 
-import User from "models/User";
+import User from "../models/User";
 
 const params = {
-  secretOrKey: process.env.JWT_SECRET,
+  secretOrKey: "secret",
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
 };
 
-export default (passport: PassportStatic) => {
+export default (passport: any) => {
   passport.use(
     new Strategy(params, (jwt_payload, done) => {
       User.findById(jwt_payload._id)
